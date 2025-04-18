@@ -4,28 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Just Build Shit Manifesto">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&display=swap" rel="stylesheet">
     <title>"Just Build Shit" Manifesto</title>
     <style>
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: rgb(33, 37, 41);
+                color: rgb(222, 226, 230);
+            }
+
+            em {
+                color: rgb(255, 193, 126);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            body {
+                background-color: rgb(255, 243, 229);
+                color: rgb(0, 0, 0);
+            }
+        }
+
         body {
             margin: 0 auto;
             max-width: 724px;
             padding: 2rem;
-
-            background-color: rgb(33, 37, 41);
-
-            font-size: 16px;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            color: rgb(222, 226, 230);
+            font-size: 14px;
+            font-family: "Noto Sans Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         }
 
         h1 {
             font-size: 3rem;
-            font-weight: 700;
+            font-weight: 900;
+        }
+
+        dt {
+          font-size: 1.5em;
         }
     </style>
 </head>
 <body>
-    <h1>Just Build Shit</h1>
-    <p>Stop wasting time</p>
+    <article>
+    <h1>Just Build Shit Manifesto</h1>
+        <section>
+            <p>The following is a non-exhaustive list of <em>ideas, principles, annoyances, and brainfarts</em> on developing software in order
+                to remind me, and maybe even some other people, on how to actually <em>deliver software</em> and <em>improve as a developer</em>.</p>
+            <p>Almost all the criticisms and annoyances that are the basis of this manifesto are, or have been, applicable to myself. And probably will be in the future. I am not some all-knowing programming saint. This is, if anything, a mirror to hold up to myself.</p>
+            <p>At the end of the day we <em>just want to build shit</em>.</p>
+        </section>
+        <section>
+            <dl>
+                <dt>No Ego-Driven-Development</dt>
+                <dd>
+                    <p>Absolutely nobody cares that you used a recursive descent parser in a pure functional immutable way in order to read a config file.</p>
+                    <p>If you want to show off your programming prowess, do not burden your team members with your unintelligable results. In the best case you'll
+                    get push-back from team members that you should change it, resulting in double work.
+                    In the worst case people actually believe you are a programming god and won't dare to question you.</p>
+                    <p>Also, you won't understand your own glorious creation a few months down the road when inevitably bugs arise and only you are the programming god that can solve them. Which you can't.</p>
+                </dd>
+            </dl>
+        </section>
+    </article>
 </body>
 </html>
