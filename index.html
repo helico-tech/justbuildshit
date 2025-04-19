@@ -8,23 +8,30 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&display=swap" rel="stylesheet">
     <title>"Just Build Shit" Manifesto</title>
+    <script data-goatcounter="https://justbuildshit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
     <style>
-        @media (prefers-color-scheme: dark) {
-            body {
-                background-color: rgb(33, 37, 41);
-                color: rgb(222, 226, 230);
-            }
-
-            em {
-                color: rgb(255, 193, 126);
-            }
+        :root {
+            --bg-color: rgb(255, 243, 229);
+            --text-color: rgb(0, 0, 0);
+            --em-color: inherit;
         }
 
-        @media (prefers-color-scheme: light) {
-            body {
-                background-color: rgb(255, 243, 229);
-                color: rgb(0, 0, 0);
-            }
+        [data-theme="dark"] {
+            --bg-color: rgb(33, 37, 41);
+            --text-color: rgb(222, 226, 230);
+            --em-color: rgb(255, 193, 126);
+        }
+
+        :root:not([data-theme="light"]) {
+            --bg-color: rgb(33, 37, 41);
+            --text-color: rgb(222, 226, 230);
+            --em-color: rgb(255, 193, 126);
+        }
+
+        :root:not([data-theme="dark"]) {
+            --bg-color: rgb(255, 243, 229);
+            --text-color: rgb(0, 0, 0);
+            --em-color: rgb(0, 148, 204);
         }
 
         body {
@@ -32,7 +39,16 @@
             max-width: 724px;
             padding: 2rem;
             font-size: 14px;
+            font-weight: 300;
             font-family: "Noto Sans Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        em {
+            color: var(--em-color);
+            transition: color 0.3s ease;
         }
 
         h1 {
@@ -41,31 +57,140 @@
         }
 
         dt {
-          font-size: 1.5em;
+            font-size: 1.3em;
+            margin-bottom: 0.5em;
+            font-weight: bold;
+        }
+
+        dd {
+            margin-bottom: 1em;
+        }
+
+        .theme-switch {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .theme-switch:hover {
+            transform: scale(1.1);
         }
     </style>
 </head>
 <body>
+    <button class="theme-switch" id="themeSwitch" aria-label="Toggle dark/light mode">🌓</button>
     <article>
     <h1>Just Build Shit Manifesto</h1>
         <section>
             <p>The following is a non-exhaustive list of <em>ideas, principles, annoyances, and brainfarts</em> on developing software in order
                 to remind me, and maybe even some other people, on how to actually <em>deliver software</em> and <em>improve as a developer</em>.</p>
-            <p>Almost all the criticisms and annoyances that are the basis of this manifesto are, or have been, applicable to myself. And probably will be in the future. I am not some all-knowing programming saint. This is, if anything, a mirror to hold up to myself.</p>
+            <p>Almost all the points below are, or have been, applicable to myself. I am not some all-knowing programming saint. This is, if anything, a mirror to hold up to myself.</p>
             <p>At the end of the day we <em>just want to build shit</em>.</p>
         </section>
         <section>
             <dl>
                 <dt>No Ego-Driven-Development</dt>
-                <dd>
-                    <p>Absolutely nobody cares that you used a recursive descent parser in a pure functional immutable way in order to read a config file.</p>
-                    <p>If you want to show off your programming prowess, do not burden your team members with your unintelligable results. In the best case you'll
-                    get push-back from team members that you should change it, resulting in double work.
-                    In the worst case people actually believe you are a programming god and won't dare to question you.</p>
-                    <p>Also, you won't understand your own glorious creation a few months down the road when inevitably bugs arise and only you are the programming god that can solve them. Which you can't.</p>
-                </dd>
+                <dd>Absolutely nobody cares that you used a recursive descent parser in a pure functional immutable way in order to read a config file.</dd>
+                <dd>If you want to show off your programming prowess, do not burden your team members with your unintelligable results. In the best case you'll
+                get push-back from team members that you should change it, resulting in double work.
+                In the worst case people actually believe you are a programming god and won't dare to question you.</dd>
+                <dd>Also, you won't understand your own glorious creation a few months down the road when inevitably bugs arise and only you are the programming god that can solve them. Which you aren't.</dd>
+
+                <dt>Don't abstract a future you don't know</dt>
+                <dd>Don't design architectures or code for all the possible usecases that might arise in the future. You don't know the future.</dd>
+                <dd>When you start duplicating code, and it proves painful, abstract. Don't abstract because you duplicated code, once.</dd>
+
+                <dt>Just because a framework, library, or ecosystem is old means it does not mean it is bad</dt>
+                <dd>It means that it has stood the test of time, and it has seen a lot of usage.</dd>
+                <dd>That cannot be said of the latest VC funded micro-SSR-turbo-framwork with Go-compiler-pipeline and flashy website.</dd>
+
+                <dt>Tools are a means, not a goal</dt>
+                <dd>It is super great that you are fluent in NeoVim and write tons of macros for it. Just learn it in your own time.</dd>
+                <dd>Learn a tool that works for you, stick with the tool.</dd>
+
+                <dt>Your identity is not your stack</dt>
+                <dd>Your are not a React dev, or a Rust dev, or a Spring developer. You are a builder.</dd>
+
+                <dt>Learn the basics of what your new favorite framework abstracts</dt>
+                <dd>When using full stack frameworks with ORM's and SSR and whatnot try to learn what they abstract. SQL? HTTP? Caching? Auth?</dd>
+                <dd>Nothing has fundamentally changed in most foundations of software development. The new shiny framework is just a new iteration of the basics.</dd>
+                <dd>You'll find out that most stuff is made complicated by frameworks precisely because they want to abstract every possible usecase of every user in the future.</dd>
+
+                <dt>Code will always be messy</dt>
+                <dd>Even with guidelines, and standards, code will be messy because communicate messy.</dd>
+                <dd>Learn to cope with messiness.</dd>
+                <dd>Do not propose a rebuilt because stuff is messy. You will create a new mess. Instead, tidy up when you can.</dd>
+
+                <dt>Don't overinflate your scale</dt>
+                <dd>Chances are your app is not Netflix/Shopify/CashApp/whatever. Solve the real problem in front of you. Not the imagined future where your app scales to a billion users with a plugin system written in WASM.</dd>
+                <dd>We are not in the 90's anymore. Hardware is fast. Fast enough for 99% of usecases.</dd>
+
+                <dt>Rewriting is ego, not progress</dt>
+                <dd>Wanting to do a rewrite is often ego, or insecurity, talking.</dd>
+                <dd>If you do not understand a codebase, you also do not know what to rebuild.</dd>
+                <dd>Instead, try to gradually fix the pain points.</dd>
+
+                <dt>The 10x engineers on Twitter/YouTube/whatever</dt>
+                <dd>If their livelihood depends on Twitter/Youtube/whatever they have a different agenda then you.</dd>
+                <dd>The "stack I am going to use for 'my next Saas'" short is for clicks. Building 1 fullstack TodoList app isn't a SaaS.</dd>
+                <dd>A SaaS is a multiyear commitment including maintenance and support.</dd>
             </dl>
         </section>
     </article>
+
+    <script>
+        // Theme switching functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeSwitch = document.getElementById('themeSwitch');
+            const htmlElement = document.documentElement;
+
+            // Check if user has previously selected a theme
+            const savedTheme = localStorage.getItem('theme');
+
+            // Apply saved theme if it exists
+            if (savedTheme) {
+                htmlElement.setAttribute('data-theme', savedTheme);
+                updateThemeIcon(savedTheme);
+            }
+
+            // Toggle theme when button is clicked
+            themeSwitch.addEventListener('click', function() {
+                const currentTheme = htmlElement.getAttribute('data-theme');
+                let newTheme;
+
+                // Toggle between light and dark
+                if (currentTheme === 'dark') {
+                    newTheme = 'light';
+                } else if (currentTheme === 'light') {
+                    newTheme = 'dark';
+                } else {
+                    // If no theme is set, check system preference
+                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    newTheme = prefersDark ? 'light' : 'dark';
+                }
+
+                htmlElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                updateThemeIcon(newTheme);
+            });
+
+            function updateThemeIcon(theme) {
+                themeSwitch.innerHTML = theme === 'dark' ? '☀️' : '🌙';
+            }
+        });
+    </script>
 </body>
 </html>
