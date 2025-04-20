@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,27 +7,16 @@
     <meta name="author" content="Just Build Shit">
     <meta name="keywords" content="software development, programming, manifesto, productivity, simplicity, pragmatic coding">
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://justbuildshit.com/">
-    <meta property="og:title" content="Just Build Shit Manifesto">
-    <meta property="og:description" content="A manifesto for software developers focused on building and shipping products without overthinking or overengineering.">
-    <meta property="og:image" content="https://justbuildshit.com/og-image.png">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://justbuildshit.com/">
-    <meta property="twitter:title" content="Just Build Shit Manifesto">
-    <meta property="twitter:description" content="A manifesto for software developers focused on building and shipping products without overthinking or overengineering.">
-    <meta property="twitter:image" content="https://justbuildshit.com/og-image.png">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💩</text></svg>">
-    <title>"Just Build Shit" Manifesto</title>
-    <script data-goatcounter="https://justbuildshit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <title>Just Build Shit Manifesto</title>
+    <script data-goatcounter="https://justbuildshit.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+    <meta name="theme-color" content="#FFF3E5" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#212529" media="(prefers-color-scheme: dark)">
     <style>
+        /* CSS Variables for theming */
         :root {
             --bg-color: rgb(255, 243, 229);
             --text-color: rgb(0, 0, 0);
@@ -77,6 +66,7 @@
             }
         }
 
+        /* Base styles */
         * {
             box-sizing: border-box;
         }
@@ -99,6 +89,7 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
+        /* Responsive adjustments */
         @media (max-width: 768px) {
             body {
                 padding: 1rem;
@@ -106,6 +97,7 @@
             }
         }
 
+        /* Typography */
         a {
             color: var(--link-color);
             text-decoration: none;
@@ -124,6 +116,7 @@
             transition: color 0.3s ease;
         }
 
+        /* Headings */
         h1, h2, h3 {
             color: var(--heading-color);
             line-height: 1.2;
@@ -145,6 +138,7 @@
             border-bottom: 1px solid var(--border-color);
         }
 
+        /* Definition list styles */
         dt {
             font-size: 1.3em;
             margin-top: 1.5em;
@@ -158,10 +152,12 @@
             margin-left: 1em;
         }
 
+        /* Layout */
         section {
             margin-bottom: 2rem;
         }
 
+        /* Accessibility */
         .skip-link {
             position: absolute;
             top: -40px;
@@ -177,6 +173,7 @@
             top: 0;
         }
 
+        /* Theme switcher */
         .theme-switch {
             position: fixed;
             top: 1rem;
@@ -202,6 +199,7 @@
             outline: none;
         }
 
+        /* Table of Contents */
         .toc {
             background-color: var(--toc-bg-color);
             padding: 1.5rem;
@@ -230,6 +228,7 @@
             padding: 0.2rem 0;
         }
 
+        /* Footer */
         footer {
             margin-top: 3rem;
             padding-top: 1.5rem;
@@ -241,34 +240,37 @@
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
-    <button class="theme-switch" id="themeSwitch" aria-label="Toggle dark/light mode">🌓</button>
-    <article>
-    <h1>Just Build Shit Manifesto</h1>
-        <section>
+    <button class="theme-switch" id="themeSwitch" aria-label="Toggle dark/light mode" title="Toggle dark/light mode">🌓</button>
+
+    <header>
+        <h1>Just Build Shit Manifesto</h1>
+        <div class="intro">
             <p>The following is a non-exhaustive list of <em>ideas, principles, annoyances, and brainfarts</em> on developing software in order
                 to remind me, and maybe even some other people, on how to actually <em>deliver software</em> and <em>improve as a developer</em>.</p>
             <p>Almost all the points below are, or have been, applicable to myself. I am not some all-knowing programming saint. This is, if anything, a mirror to hold up to myself.</p>
             <p>At the end of the day we <em>just want to build shit</em>.</p>
-        </section>
+        </div>
+    </header>
 
-        <section class="toc">
-            <h2>Table of Contents</h2>
-            <ul>
-                <li><a href="#ego-driven-development">No Ego-Driven-Development</a></li>
-                <li><a href="#future-abstraction">Don't abstract a future you don't know</a></li>
-                <li><a href="#old-frameworks">Just because a framework, library, or ecosystem is old doesn't mean it is bad</a></li>
-                <li><a href="#tools">Tools are a means, not a goal</a></li>
-                <li><a href="#identity">Your identity is not your stack</a></li>
-                <li><a href="#learn-basics">Learn the basics of what your new favorite framework abstracts</a></li>
-                <li><a href="#messy-code">Code will always be messy</a></li>
-                <li><a href="#scale">Don't overinflate your scale</a></li>
-                <li><a href="#rewriting">Rewriting is ego, not progress</a></li>
-                <li><a href="#10x-engineers">The 10x engineers on Twitter/YouTube/whatever</a></li>
-                <li><a href="#read-docs">Learn to read documentation</a></li>
-            </ul>
-        </section>
+    <nav class="toc" aria-labelledby="toc-heading">
+        <h2 id="toc-heading">Table of Contents</h2>
+        <ul>
+            <li><a href="#ego-driven-development">No Ego-Driven-Development</a></li>
+            <li><a href="#future-abstraction">Don't abstract a future you don't know</a></li>
+            <li><a href="#old-frameworks">Just because a framework, library, or ecosystem is old doesn't mean it is bad</a></li>
+            <li><a href="#tools">Tools are a means, not a goal</a></li>
+            <li><a href="#identity">Your identity is not your stack</a></li>
+            <li><a href="#learn-basics">Learn the basics of what your new favorite framework abstracts</a></li>
+            <li><a href="#messy-code">Code will always be messy</a></li>
+            <li><a href="#scale">Don't overinflate your scale</a></li>
+            <li><a href="#rewriting">Rewriting is ego, not progress</a></li>
+            <li><a href="#10x-engineers">The 10x engineers on Twitter/YouTube/whatever</a></li>
+            <li><a href="#read-docs">Learn to read documentation</a></li>
+        </ul>
+    </nav>
 
-        <section id="main-content">
+    <main id="main-content">
+        <section>
             <h2>Principles</h2>
             <dl>
                 <dt id="ego-driven-development">No Ego-Driven-Development</dt>
@@ -350,16 +352,16 @@
                 <dd>If a tool or framework has crappy docs, it is a warning sign. Good documentation indicates a mature project with a community that cares about developer experience.</dd>
             </dl>
         </section>
-    </article>
+    </main>
 
     <footer>
-        <p><a href="#" aria-label="Back to top">↑ Back to top</a></p>
+        <p><a href="#" aria-label="Back to top" title="Back to top">↑ Back to top</a></p>
         <p>&copy; <span id="currentYear"></span> Just Build Shit Manifesto</p>
     </footer>
 
     <script>
         // Theme switching functionality
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', () => {
             const themeSwitch = document.getElementById('themeSwitch');
             const htmlElement = document.documentElement;
             const currentYearElement = document.getElementById('currentYear');
@@ -367,9 +369,21 @@
             // Set current year in footer
             currentYearElement.textContent = new Date().getFullYear();
 
+            // Function to update theme icon and aria-label
+            function updateThemeIcon(theme) {
+                themeSwitch.innerHTML = theme === 'dark' ? '☀️' : '🌙';
+                themeSwitch.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+            }
+
+            // Function to set theme
+            function setTheme(theme) {
+                htmlElement.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+                updateThemeIcon(theme);
+            }
+
             // Check if user has previously selected a theme
             const savedTheme = localStorage.getItem('theme');
-
             // Check system preference
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
@@ -378,30 +392,19 @@
                 // Use saved preference if available
                 htmlElement.setAttribute('data-theme', savedTheme);
                 updateThemeIcon(savedTheme);
-            } else if (prefersDark) {
-                // Use system preference if no saved preference
-                htmlElement.setAttribute('data-theme', 'dark');
-                updateThemeIcon('dark');
             } else {
-                // Default to light if no saved preference and system prefers light
-                htmlElement.setAttribute('data-theme', 'light');
-                updateThemeIcon('light');
+                // Use system preference if no saved preference
+                const initialTheme = prefersDark ? 'dark' : 'light';
+                htmlElement.setAttribute('data-theme', initialTheme);
+                updateThemeIcon(initialTheme);
             }
 
             // Toggle theme when button is clicked
-            themeSwitch.addEventListener('click', function() {
+            themeSwitch.addEventListener('click', () => {
                 const currentTheme = htmlElement.getAttribute('data-theme');
-                let newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-
-                htmlElement.setAttribute('data-theme', newTheme);
-                localStorage.setItem('theme', newTheme);
-                updateThemeIcon(newTheme);
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                setTheme(newTheme);
             });
-
-            function updateThemeIcon(theme) {
-                themeSwitch.innerHTML = theme === 'dark' ? '☀️' : '🌙';
-                themeSwitch.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
-            }
 
             // Listen for system preference changes
             window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
