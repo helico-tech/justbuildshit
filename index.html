@@ -3,67 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Just Build Shit Manifesto">
+    <meta name="description" content="A manifesto for software developers focused on building and shipping products without overthinking or overengineering.">
+    <meta name="author" content="Just Build Shit">
+    <meta name="keywords" content="software development, programming, manifesto, productivity, simplicity, pragmatic coding">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://justbuildshit.com/">
+    <meta property="og:title" content="Just Build Shit Manifesto">
+    <meta property="og:description" content="A manifesto for software developers focused on building and shipping products without overthinking or overengineering.">
+    <meta property="og:image" content="https://justbuildshit.com/og-image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://justbuildshit.com/">
+    <meta property="twitter:title" content="Just Build Shit Manifesto">
+    <meta property="twitter:description" content="A manifesto for software developers focused on building and shipping products without overthinking or overengineering.">
+    <meta property="twitter:image" content="https://justbuildshit.com/og-image.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💩</text></svg>">
     <title>"Just Build Shit" Manifesto</title>
     <script data-goatcounter="https://justbuildshit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
     <style>
         :root {
             --bg-color: rgb(255, 243, 229);
             --text-color: rgb(0, 0, 0);
-            --em-color: inherit;
+            --em-color: rgb(0, 102, 204);
+            --link-color: rgb(0, 102, 204);
+            --link-hover-color: rgb(204, 51, 0);
+            --heading-color: rgb(51, 51, 51);
+            --border-color: rgba(0, 0, 0, 0.1);
+            --toc-bg-color: rgba(0, 0, 0, 0.03);
         }
 
         [data-theme="dark"] {
             --bg-color: rgb(33, 37, 41);
             --text-color: rgb(222, 226, 230);
             --em-color: rgb(255, 193, 126);
+            --link-color: rgb(102, 204, 255);
+            --link-hover-color: rgb(255, 153, 102);
+            --heading-color: rgb(255, 255, 255);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --toc-bg-color: rgba(255, 255, 255, 0.05);
         }
 
-        :root:not([data-theme="light"]) {
-            --bg-color: rgb(33, 37, 41);
-            --text-color: rgb(222, 226, 230);
-            --em-color: rgb(255, 193, 126);
+        /* System preference detection */
+        @media (prefers-color-scheme: dark) {
+            :root:not([data-theme="light"]) {
+                --bg-color: rgb(33, 37, 41);
+                --text-color: rgb(222, 226, 230);
+                --em-color: rgb(255, 193, 126);
+                --link-color: rgb(102, 204, 255);
+                --link-hover-color: rgb(255, 153, 102);
+                --heading-color: rgb(255, 255, 255);
+                --border-color: rgba(255, 255, 255, 0.1);
+                --toc-bg-color: rgba(255, 255, 255, 0.05);
+            }
         }
 
-        :root:not([data-theme="dark"]) {
-            --bg-color: rgb(255, 243, 229);
-            --text-color: rgb(0, 0, 0);
-            --em-color: rgb(0, 148, 204);
+        @media (prefers-color-scheme: light) {
+            :root:not([data-theme="dark"]) {
+                --bg-color: rgb(255, 243, 229);
+                --text-color: rgb(0, 0, 0);
+                --em-color: rgb(0, 102, 204);
+                --link-color: rgb(0, 102, 204);
+                --link-hover-color: rgb(204, 51, 0);
+                --heading-color: rgb(51, 51, 51);
+                --border-color: rgba(0, 0, 0, 0.1);
+                --toc-bg-color: rgba(0, 0, 0, 0.03);
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 2rem;
         }
 
         body {
             margin: 0 auto;
-            max-width: 724px;
+            max-width: 800px;
             padding: 2rem;
-            font-size: 14px;
-            font-weight: 300;
+            font-size: 16px;
+            line-height: 1.6;
+            font-weight: 400;
             font-family: "Noto Sans Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
             background-color: var(--bg-color);
             color: var(--text-color);
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+                font-size: 15px;
+            }
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        a:hover, a:focus {
+            color: var(--link-hover-color);
+            border-bottom-color: currentColor;
+        }
+
         em {
             color: var(--em-color);
+            font-style: italic;
             transition: color 0.3s ease;
         }
 
+        h1, h2, h3 {
+            color: var(--heading-color);
+            line-height: 1.2;
+        }
+
         h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 900;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
         }
 
         dt {
             font-size: 1.3em;
+            margin-top: 1.5em;
             margin-bottom: 0.5em;
             font-weight: bold;
+            color: var(--heading-color);
         }
 
         dd {
             margin-bottom: 1em;
+            margin-left: 1em;
+        }
+
+        section {
+            margin-bottom: 2rem;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--link-color);
+            color: white;
+            padding: 8px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 0;
         }
 
         .theme-switch {
@@ -73,8 +184,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             background-color: var(--text-color);
             color: var(--bg-color);
@@ -83,14 +194,53 @@
             font-size: 1.2rem;
             transition: all 0.3s ease;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 10;
         }
 
-        .theme-switch:hover {
+        .theme-switch:hover, .theme-switch:focus {
             transform: scale(1.1);
+            outline: none;
+        }
+
+        .toc {
+            background-color: var(--toc-bg-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .toc h2 {
+            margin-top: 0;
+            font-size: 1.3rem;
+            border-bottom: none;
+        }
+
+        .toc ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .toc li {
+            margin-bottom: 0.5rem;
+        }
+
+        .toc a {
+            display: inline-block;
+            padding: 0.2rem 0;
+        }
+
+        footer {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            text-align: center;
         }
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <button class="theme-switch" id="themeSwitch" aria-label="Toggle dark/light mode">🌓</button>
     <article>
     <h1>Just Build Shit Manifesto</h1>
@@ -100,9 +250,28 @@
             <p>Almost all the points below are, or have been, applicable to myself. I am not some all-knowing programming saint. This is, if anything, a mirror to hold up to myself.</p>
             <p>At the end of the day we <em>just want to build shit</em>.</p>
         </section>
-        <section>
+
+        <section class="toc">
+            <h2>Table of Contents</h2>
+            <ul>
+                <li><a href="#ego-driven-development">No Ego-Driven-Development</a></li>
+                <li><a href="#future-abstraction">Don't abstract a future you don't know</a></li>
+                <li><a href="#old-frameworks">Just because a framework, library, or ecosystem is old doesn't mean it is bad</a></li>
+                <li><a href="#tools">Tools are a means, not a goal</a></li>
+                <li><a href="#identity">Your identity is not your stack</a></li>
+                <li><a href="#learn-basics">Learn the basics of what your new favorite framework abstracts</a></li>
+                <li><a href="#messy-code">Code will always be messy</a></li>
+                <li><a href="#scale">Don't overinflate your scale</a></li>
+                <li><a href="#rewriting">Rewriting is ego, not progress</a></li>
+                <li><a href="#10x-engineers">The 10x engineers on Twitter/YouTube/whatever</a></li>
+                <li><a href="#read-docs">Learn to read documentation</a></li>
+            </ul>
+        </section>
+
+        <section id="main-content">
+            <h2>Principles</h2>
             <dl>
-                <dt>No Ego-Driven-Development</dt>
+                <dt id="ego-driven-development">No Ego-Driven-Development</dt>
                 <dd>Absolutely nobody cares that you used a recursive descent parser in a pure functional immutable way
                     in order to read a config file.
                 </dd>
@@ -115,7 +284,7 @@
                     bugs arise and only you are the programming god that can solve them. Which you aren't.
                 </dd>
 
-                <dt>Don't abstract a future you don't know</dt>
+                <dt id="future-abstraction">Don't abstract a future you don't know</dt>
                 <dd>Don't design architectures or code for all the possible use cases that might arise in the future.
                     You don't know the future.
                 </dd>
@@ -123,22 +292,22 @@
                     duplicated code once.
                 </dd>
 
-                <dt>Just because a framework, library, or ecosystem is old doesn't mean it is bad</dt>
+                <dt id="old-frameworks">Just because a framework, library, or ecosystem is old doesn't mean it is bad</dt>
                 <dd>It means that it has stood the test of time and has seen a lot of usage.</dd>
                 <dd>That cannot be said of the latest VC-funded micro-SSR-turbo-framework with Go-compiler-pipeline and
                     flashy website.
                 </dd>
 
-                <dt>Tools are a means, not a goal</dt>
+                <dt id="tools">Tools are a means, not a goal</dt>
                 <dd>It's super great that you are fluent in NeoVim and write tons of macros for it. Just learn it in
                     your own time.
                 </dd>
                 <dd>Learn a tool that works for you and stick with it.</dd>
 
-                <dt>Your identity is not your stack</dt>
+                <dt id="identity">Your identity is not your stack</dt>
                 <dd>You are not a React dev, or a Rust dev, or a Spring developer. You are a builder.</dd>
 
-                <dt>Learn the basics of what your new favorite framework abstracts</dt>
+                <dt id="learn-basics">Learn the basics of what your new favorite framework abstracts</dt>
                 <dd>When using full-stack frameworks with ORMs and SSR and whatnot, try to learn what they abstract.
                     SQL? HTTP? Caching? Auth?
                 </dd>
@@ -149,65 +318,80 @@
                     abstract every possible use case of every user in the future.
                 </dd>
 
-                <dt>Code will always be messy</dt>
+                <dt id="messy-code">Code will always be messy</dt>
                 <dd>Even with guidelines and standards, code will be messy because we communicate messily.</dd>
                 <dd>Learn to cope with messiness.</dd>
                 <dd>Don't propose a rebuild because stuff is messy. You will create a new mess. Instead, tidy up when
                     you can.
                 </dd>
 
-                <dt>Don't overinflate your scale</dt>
+                <dt id="scale">Don't overinflate your scale</dt>
                 <dd>Chances are your app is not Netflix/Shopify/CashApp/whatever. Solve the real problem in front of
                     you, not the imagined future where your app scales to a billion users with a plugin system written
                     in WASM.
                 </dd>
                 <dd>We are not in the 90's anymore. Hardware is fast. Fast enough for 99% of use cases.</dd>
 
-                <dt>Rewriting is ego, not progress</dt>
+                <dt id="rewriting">Rewriting is ego, not progress</dt>
                 <dd>Wanting to do a rewrite is often ego, or insecurity, talking.</dd>
                 <dd>If you don't understand a codebase, you also don't know what to rebuild.</dd>
                 <dd>Instead, try to gradually fix the pain points.</dd>
 
-                <dt>The 10x engineers on Twitter/YouTube/whatever</dt>
+                <dt id="10x-engineers">The 10x engineers on Twitter/YouTube/whatever</dt>
                 <dd>If their livelihood depends on Twitter/Youtube/whatever, they have a different agenda than you.</dd>
                 <dd>The "stack I am going to use for 'my next SaaS'" short is for clicks. Building one fullstack
                     TodoList app isn't a SaaS.
                 </dd>
                 <dd>A SaaS is a multi-year commitment including maintenance and support.</dd>
+
+                <dt id="read-docs">Learn to read documentation</dt>
+                <dd>If you can spend 10 minutes vibe coding your way to a solution, you can spend 10 minutes reading docs and actually understanding.</dd>
+                <dd>Reading documentation helps you understand the tool's intended use cases, limitations, and best practices. It will make you use the tool in a more efficient manner.</dd>
+                <dd>If a tool or framework has crappy docs, it is a warning sign. Good documentation indicates a mature project with a community that cares about developer experience.</dd>
             </dl>
         </section>
     </article>
+
+    <footer>
+        <p><a href="#" aria-label="Back to top">↑ Back to top</a></p>
+        <p>&copy; <span id="currentYear"></span> Just Build Shit Manifesto</p>
+    </footer>
 
     <script>
         // Theme switching functionality
         document.addEventListener('DOMContentLoaded', function() {
             const themeSwitch = document.getElementById('themeSwitch');
             const htmlElement = document.documentElement;
+            const currentYearElement = document.getElementById('currentYear');
+
+            // Set current year in footer
+            currentYearElement.textContent = new Date().getFullYear();
 
             // Check if user has previously selected a theme
             const savedTheme = localStorage.getItem('theme');
 
-            // Apply saved theme if it exists
+            // Check system preference
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            // Apply theme logic
             if (savedTheme) {
+                // Use saved preference if available
                 htmlElement.setAttribute('data-theme', savedTheme);
                 updateThemeIcon(savedTheme);
+            } else if (prefersDark) {
+                // Use system preference if no saved preference
+                htmlElement.setAttribute('data-theme', 'dark');
+                updateThemeIcon('dark');
+            } else {
+                // Default to light if no saved preference and system prefers light
+                htmlElement.setAttribute('data-theme', 'light');
+                updateThemeIcon('light');
             }
 
             // Toggle theme when button is clicked
             themeSwitch.addEventListener('click', function() {
                 const currentTheme = htmlElement.getAttribute('data-theme');
-                let newTheme;
-
-                // Toggle between light and dark
-                if (currentTheme === 'dark') {
-                    newTheme = 'light';
-                } else if (currentTheme === 'light') {
-                    newTheme = 'dark';
-                } else {
-                    // If no theme is set, check system preference
-                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                    newTheme = prefersDark ? 'light' : 'dark';
-                }
+                let newTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
                 htmlElement.setAttribute('data-theme', newTheme);
                 localStorage.setItem('theme', newTheme);
@@ -216,7 +400,18 @@
 
             function updateThemeIcon(theme) {
                 themeSwitch.innerHTML = theme === 'dark' ? '☀️' : '🌙';
+                themeSwitch.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
             }
+
+            // Listen for system preference changes
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+                // Only apply if user hasn't set a preference
+                if (!localStorage.getItem('theme')) {
+                    const newTheme = e.matches ? 'dark' : 'light';
+                    htmlElement.setAttribute('data-theme', newTheme);
+                    updateThemeIcon(newTheme);
+                }
+            });
         });
     </script>
 </body>
